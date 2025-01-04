@@ -26,8 +26,9 @@
 
          function addDirectLinkMarker(lat, lng, url) {
     var marker = L.marker([lat, lng]).addTo(map);
-    marker.on('click', function() {
-      window.open(url, '_blank'); // Öffnet die Seite im neuen Tab
+              marker.on('click', function(e) {
+      e.originalEvent.stopPropagation(); // Stoppt die Karteninteraktion
+      window.open(url, '_blank'); // Öffnet den Link in einem neuen Tab
     });
   }
 
