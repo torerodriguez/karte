@@ -15,8 +15,12 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Initialisierung der Karte
-        var map = L.map('map').setView([52.272983, 8.041767], 5); // Zoom-Level angepasst
+var map = L.map('map', {
+    center: [51.505, -0.09], // Startkoordinaten
+    zoom: 13,
+    dragging: true,          // Ziehen der Karte aktiv
+    tap: false,              // Deaktiviert mobiles Tap-Handling für präzisere Klicks
+  });
 
         // OpenStreetMap-Tile-Layer hinzufügen
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -26,8 +30,9 @@
 
          function addDirectLinkMarker(lat, lng, url) {
     var marker = L.marker([lat, lng]).addTo(map);
-              marker.on('click', function(e) {
-      e.originalEvent.stopPropagation(); // Stoppt die Karteninteraktion
+ marker.on('click', function(e) {
+      e.originalEvent.preventDefault(); // Verhindert Standardverhalten der Karte
+      e.originalEvent.stopPropagation(); // Stoppt Karteninteraktion
       window.open(url, '_blank'); // Öffnet den Link in einem neuen Tab
     });
   }
