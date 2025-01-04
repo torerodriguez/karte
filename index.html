@@ -28,8 +28,8 @@ var map = L.map('map', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-         function addDirectLinkMarker(lat, lng, url) {
-    var marker = L.marker([lat, lng]).addTo(map);
+    function addDirectLinkMarker(lat, lng, url) {
+    var marker = L.marker([lat, lng], { interactive: true }).addTo(map);
  marker.on('click', function(e) {
       e.originalEvent.preventDefault(); // Verhindert Standardverhalten der Karte
       e.originalEvent.stopPropagation(); // Stoppt Karteninteraktion
