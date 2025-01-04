@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Karte</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Karte -->
+    <div id="map" style="width: 100%; height: 500px;"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialisierung der Karte
+        var map = L.map('map').setView([52.272983, 8.041767], 5); // Zoom-Level angepasst
+
+        // OpenStreetMap-Tile-Layer hinzufügen
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+ function addMarker(lat, lng, url, text, color = 'blue') {
+    L.marker([lat, lng]).addTo(map)
+      .bindPopup(`<a href="${url}" target="_blank" style="text-decoration: none; color: ${color};">${text}</a>`)
+      .on('popupopen', function(e) {
+        // Event-Listener für Klick auf Links
+        const link = e.popup.getElement().querySelector('a');
+        link.addEventListener('click', function(event) {
+          event.stopPropagation(); // Verhindert Karteninteraktion
+        });
+      });
+  }
+    });
+  }
+
+
+               // Marker mit Popup und Link
+        addMarker(53.11205382030338, 8.858019791500611, 'https://aiagriculture7.wordpress.com/project-roland/', 'Project RoLand', 'blue');
+        addMarker(52.272983, 8.041767, 'https://aiagriculture7.wordpress.com/cognitveweeding-project/'', 'Cognitive Weeding', 'red');
+    </script>
+</body>
+</html>
