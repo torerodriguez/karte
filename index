@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Karte</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Karte -->
+    <div id="map" style="width: 100%; height: 500px;"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialisierung der Karte
+        var map = L.map('map').setView([52.272983, 8.041767], 5); // Zoom-Level angepasst
+
+        // OpenStreetMap-Tile-Layer hinzufügen
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+         function addDirectLinkMarker(lat, lng, url) {
+    var marker = L.marker([lat, lng]).addTo(map);
+    marker.on('click', function() {
+      window.open(url, '_blank'); // Öffnet die Seite im neuen Tab
+    });
+  }
+ 
+
+              
+      };
+    });
+  });
+
+               // Marker mit Popup und Link
+     addDirectLinkMarker(53.11205382030338, 8.858019791500611, 'https://aiagriculture7.wordpress.com/project-roland/'); // Beispiel-Link 1
+    </script>
+</body>
+</html>
