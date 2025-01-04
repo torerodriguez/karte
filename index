@@ -30,12 +30,7 @@
       window.open(url, '_blank'); // Öffnet die Seite im neuen Tab
     });
   }
- 
 
-              
-      };
-    });
-  });
 
                // Marker mit Popup und Link
      addDirectLinkMarker(53.11205382030338, 8.858019791500611, 'https://aiagriculture7.wordpress.com/project-roland/'); // Beispiel-Link 1
