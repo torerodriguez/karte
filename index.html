@@ -23,17 +23,23 @@
             maxZoom: 19,
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
-
-         function addDirectLinkMarker(lat, lng, url) {
-    var marker = L.marker([lat, lng]).addTo(map);
-    marker.on('click', function() {
-      window.open(url, '_blank'); // Öffnet die Seite im neuen Tab
+ function addMarker(lat, lng, url, text, color = 'blue') {
+    L.marker([lat, lng]).addTo(map)
+      .bindPopup(`<a href="${url}" target="_blank" style="text-decoration: none; color: ${color};">${text}</a>`)
+      .on('popupopen', function(e) {
+        // Event-Listener für Klick auf Links
+        const link = e.popup.getElement().querySelector('a');
+        link.addEventListener('click', function(event) {
+          event.stopPropagation(); // Verhindert Karteninteraktion
+        });
+      });
+  }
     });
   }
 
 
                // Marker mit Popup und Link
-     addDirectLinkMarker(53.11205382030338, 8.858019791500611, 'https://aiagriculture7.wordpress.com/project-roland/'); // Beispiel-Link 1
+        addMarker(53.11205382030338, 8.858019791500611, 'https://aiagriculture7.wordpress.com/project-roland/', 'Project RoLand', 'blue');
     </script>
 </body>
 </html>
